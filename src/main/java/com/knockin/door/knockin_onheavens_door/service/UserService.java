@@ -36,19 +36,32 @@ public class UserService {
         );
 
         if (dto.getEmail() != null) {
-            theUser = theUser.toBuilder().email(dto.getEmail()).build();
+            theUser.updateEmail(dto.getEmail());
         }
 
         if (dto.getNickName() != null) {
-            theUser = theUser.toBuilder().nickName(dto.getNickName()).build();
+            theUser.updateNickName(dto.getNickName());
         }
 
         if (dto.getName() != null) {
-            theUser = theUser.toBuilder().name(dto.getName()).build();
+            theUser.updateName(dto.getName());
         }
 
-        UserEntity updatedUser = userRepository.saveAndFlush(theUser);
+        return UserUpdateDTO.from( userRepository.saveAndFlush(theUser) );
+    }
 
-        return UserUpdateDTO.from(updatedUser);
+    public UserReadResponseDTO read(Long userId) {
+        UserEntity theUser = userRepository.findByUserId(userId).orElseThrow(
+                () -> new BaseException(ResultType.NOT_FOUND)
+        );
+        return UserReadResponseDTO.from(theUser);
+    }
+
+    public void delete(UserDeleteRequestDTO dto) {
+        UserEntity theUser = userRepository.findByUserId(dto.getUserId()).orElseThrow(
+                () -> new BaseException(ResultType.NOT_FOUND)
+        );
+        theUser.updateIsDeleted(true);
+        userRepository.saveAndFlush(theUser);
     }
 }

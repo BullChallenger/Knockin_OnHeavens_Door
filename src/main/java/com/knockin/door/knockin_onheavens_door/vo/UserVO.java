@@ -47,7 +47,7 @@ public class UserVO {
                     .name(name);
         }
 
-        public static final UserCreateResponseVO of(UserCreateResponseDTO dto) {
+        public static final UserCreateResponseVO from(UserCreateResponseDTO dto) {
             return UserCreateResponseVO.builder(
                     dto.getUserId(),
                     dto.getEmail(),
@@ -81,7 +81,7 @@ public class UserVO {
                     .name(name);
         }
 
-        public static final UserUpdateVO of(UserUpdateDTO dto) {
+        public static final UserUpdateVO from(UserUpdateDTO dto) {
             return UserUpdateVO.builder(
                     dto.getUserId(),
                     dto.getEmail(),
@@ -89,5 +89,44 @@ public class UserVO {
                     dto.getName()
             ).build();
         }
+    }
+
+    @Getter
+    @Builder(builderMethodName = "innerBuilder")
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    public static final class UserReadResponseVO {
+
+        private String email;
+
+        private String nickName;
+
+        private String name;
+
+        public static final UserReadResponseVOBuilder builder(String email, String nickName, String name) {
+            return innerBuilder()
+                    .email(email)
+                    .nickName(nickName)
+                    .name(name);
+        }
+
+        public static final UserReadResponseVO from(UserReadResponseDTO dto) {
+            return UserReadResponseVO.builder(
+                    dto.getEmail(),
+                    dto.getNickName(),
+                    dto.getName()
+            ).build();
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    public static final class UserDeleteRequestVO {
+
+        private Long userId;
+
+        private String password;
     }
 }

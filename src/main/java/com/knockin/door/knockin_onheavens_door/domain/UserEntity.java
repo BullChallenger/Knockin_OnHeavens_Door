@@ -32,7 +32,7 @@ public final class UserEntity extends BaseEntity {
 
     private UserRole role;
 
-    @Builder(toBuilder = true)
+    @Builder
     public UserEntity(String email, String nickName, String password, String name, UserRole role) {
         this.email = email;
         this.nickName = nickName;
@@ -48,5 +48,29 @@ public final class UserEntity extends BaseEntity {
                             .password(password)
                             .name(name)
                          .build();
+    }
+
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+
+    public void updateNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public void updateRole(UserRole role) {
+        this.role = role;
     }
 }

@@ -27,5 +27,5 @@ public abstract class BaseEntity {
     private Timestamp updatedAt;
 
     @Column(columnDefinition = "bit default false NOT NULL COMMENT '이용가능여부'")
-    private Boolean isDeleted;
+    protected boolean isDeleted;
 }

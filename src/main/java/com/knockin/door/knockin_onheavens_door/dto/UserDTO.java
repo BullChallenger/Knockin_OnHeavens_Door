@@ -109,4 +109,52 @@ public class UserDTO {
             ).build();
         }
     }
+
+    @Getter
+    @Builder(builderMethodName = "innerBuilder")
+    public static final class UserReadResponseDTO {
+
+        private final String email;
+
+        private final String nickName;
+
+        private final String name;
+
+        public static final UserReadResponseDTOBuilder builder(String email, String nickName, String name) {
+            return innerBuilder()
+                    .email(email)
+                    .nickName(nickName)
+                    .name(name);
+        }
+
+        public static final UserReadResponseDTO from(UserEntity entity) {
+            return UserReadResponseDTO.builder(
+                    entity.getEmail(),
+                    entity.getNickName(),
+                    entity.getName()
+            ).build();
+        }
+    }
+
+    @Getter
+    @Builder(builderMethodName = "innerBuilder")
+    public static final class UserDeleteRequestDTO {
+
+        private final Long userId;
+
+        private final String password;
+
+        public static final UserDeleteRequestDTOBuilder builder(Long userId, String password) {
+            return innerBuilder()
+                    .userId(userId)
+                    .password(password);
+        }
+
+        public static final UserDeleteRequestDTO of(UserDeleteRequestVO vo) {
+            return UserDeleteRequestDTO.builder(
+                    vo.getUserId(),
+                    vo.getPassword()
+            ).build();
+        }
+    }
 }

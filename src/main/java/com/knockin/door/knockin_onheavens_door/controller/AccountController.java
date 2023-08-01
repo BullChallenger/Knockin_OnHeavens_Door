@@ -17,7 +17,7 @@ public class AccountController extends AbstractController {
     @PostMapping(value = "/create")
     public ResponseDTO<UserCreateResponseVO> create(@RequestBody UserCreateRequestVO vo) {
         UserCreateResponseDTO response = userService.create(UserCreateRequestDTO.of(vo));
-        UserCreateResponseVO result = UserCreateResponseVO.of(response);
+        UserCreateResponseVO result = UserCreateResponseVO.from(response);
 
         return ResponseDTO.ok(result);
     }
@@ -25,8 +25,22 @@ public class AccountController extends AbstractController {
     @PutMapping(value = "/update")
     public ResponseDTO<UserUpdateVO> update(@RequestBody UserUpdateVO vo) {
         UserUpdateDTO response = userService.update(UserUpdateDTO.of(vo));
-        UserUpdateVO result = UserUpdateVO.of(response);
+        UserUpdateVO result = UserUpdateVO.from(response);
 
         return ResponseDTO.ok(result);
+    }
+
+    @GetMapping(value = "/{userId}/read")
+    public ResponseDTO<UserReadResponseVO> read(@PathVariable Long userId) {
+       UserReadResponseDTO response = userService.read(userId);
+       UserReadResponseVO result = UserReadResponseVO.from(response);
+
+       return ResponseDTO.ok(result);
+    }
+
+    @PutMapping(value = "/delete")
+    public ResponseDTO<Void> delete(@RequestBody UserDeleteRequestVO vo) {
+        userService.delete(UserDeleteRequestDTO.of(vo));
+        return ok();
     }
 }

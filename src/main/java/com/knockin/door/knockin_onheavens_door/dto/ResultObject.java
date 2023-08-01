@@ -5,7 +5,7 @@ import com.knockin.door.knockin_onheavens_door.exception.BaseException;
 
 import java.io.Serializable;
 
-public class ResultObject implements Serializable {
+public class ResultObject {
 
     public String code;
 

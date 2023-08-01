@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum ResultType {
 
     SUCCESS("0000", "Success!"),
-    NOT_EXIST("4001", "Your Target Not Exist!"),
+    NOT_FOUND("4001", "Can't find your Target!"),
     SYSTEM_ERROR("9000", "System Error Occurred!");
 
     private final String code;

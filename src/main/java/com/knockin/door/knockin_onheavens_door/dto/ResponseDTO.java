@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Getter
 @NoArgsConstructor
-public class ResponseDTO<T> implements Serializable {
+public class ResponseDTO<T> {
 
     private ResultObject result;
 

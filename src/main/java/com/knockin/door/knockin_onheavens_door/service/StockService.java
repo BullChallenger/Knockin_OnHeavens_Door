@@ -31,21 +31,20 @@ public class StockService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         String dtoJson = objectMapper.writeValueAsString(dto);
-        HttpEntity<String> requestJson = new HttpEntity<>(dtoJson, headers);
 
+        HttpEntity<String> requestJson = new HttpEntity<>(dtoJson, headers);
 
         ResponseEntity<String> stockInfoResponse = null;
         try {
             stockInfoResponse = restTemplate.exchange(stockInfoUrl,
-                                  HttpMethod.GET,
+                                  HttpMethod.POST,
                                   requestJson,
                                   String.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        log.info("stockInfo : {}", stockInfoResponse);
-
-        return null;
+        GetStockInfoResponseDTO response = objectMapper.readValue(stockInfoResponse.getBody(), GetStockInfoResponseDTO.class);
+        return response;
     }
 }

@@ -15,10 +15,10 @@ public class StockController extends AbstractController {
 
     private final StockService stockService;
 
-    @GetMapping(value = "/findInfo")
+    @PostMapping(value = "/findInfo")
     public ResponseDTO<GetStockInfoResponseVO> findCurrentPrice(@RequestBody GetStockInfoRequestVO vo) throws JsonProcessingException {
         GetStockInfoResponseDTO response = stockService.getCurrentStockPrice(GetStockInfoRequestDTO.of(vo));
         GetStockInfoResponseVO result = GetStockInfoResponseVO.from(response);
-        return ok(result);
+        return ResponseDTO.ok(result);
     }
 }

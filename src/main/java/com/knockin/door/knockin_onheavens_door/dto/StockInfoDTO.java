@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.knockin.door.knockin_onheavens_door.vo.StockInfoVO.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 public class StockInfoDTO {
 
@@ -27,6 +28,7 @@ public class StockInfoDTO {
     }
 
     @Getter
+    @ToString
     @Builder(builderMethodName = "innerBuilder")
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     public static class GetStockInfoResponseDTO {

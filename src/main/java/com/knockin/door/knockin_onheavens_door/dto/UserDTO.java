@@ -4,6 +4,8 @@ import com.knockin.door.knockin_onheavens_door.domain.UserEntity;
 import com.knockin.door.knockin_onheavens_door.vo.UserVO.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserDTO {
 

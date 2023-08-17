@@ -7,6 +7,8 @@ import com.knockin.door.knockin_onheavens_door.exception.BaseException;
 import com.knockin.door.knockin_onheavens_door.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,11 +21,11 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserCreateResponseDTO create(UserCreateRequestDTO dto) {
+    public UserCreateResponseDTO create(UserCreateRequestDTO dto, PasswordEncoder bCryptPasswordEncoder) {
         UserEntity theUser  = UserEntity.of(
                                     dto.getEmail(),
                                     dto.getNickName(),
-                                    dto.getPassword(),
+                                    bCryptPasswordEncoder.encode(dto.getPassword()),
                                     dto.getName()
                               );
         UserEntity savedUserEntity = userRepository.save(theUser);

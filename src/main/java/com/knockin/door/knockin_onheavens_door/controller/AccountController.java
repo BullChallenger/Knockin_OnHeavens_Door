@@ -5,6 +5,7 @@ import com.knockin.door.knockin_onheavens_door.dto.UserDTO.*;
 import com.knockin.door.knockin_onheavens_door.service.UserService;
 import com.knockin.door.knockin_onheavens_door.vo.UserVO.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,9 +15,11 @@ public class AccountController extends AbstractController {
 
     private final UserService userService;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @PostMapping(value = "/create")
     public ResponseDTO<UserCreateResponseVO> create(@RequestBody UserCreateRequestVO vo) {
-        UserCreateResponseDTO response = userService.create(UserCreateRequestDTO.of(vo));
+        UserCreateResponseDTO response = userService.create(UserCreateRequestDTO.of(vo), bCryptPasswordEncoder);
         UserCreateResponseVO result = UserCreateResponseVO.from(response);
 
         return ResponseDTO.ok(result);
@@ -42,5 +45,10 @@ public class AccountController extends AbstractController {
     public ResponseDTO<Void> delete(@RequestBody UserDeleteRequestVO vo) {
         userService.delete(UserDeleteRequestDTO.of(vo));
         return ok();
+    }
+
+    @PostMapping(value = "/login")
+    public ResponseDTO<Void> login() {
+        return ResponseDTO.ok();
     }
 }

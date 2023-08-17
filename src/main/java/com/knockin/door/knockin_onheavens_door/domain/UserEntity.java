@@ -30,6 +30,7 @@ public final class UserEntity extends BaseEntity {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     @Builder
@@ -47,6 +48,7 @@ public final class UserEntity extends BaseEntity {
                             .nickName(nickName)
                             .password(password)
                             .name(name)
+                            .role(UserRole.USER)
                          .build();
     }
 

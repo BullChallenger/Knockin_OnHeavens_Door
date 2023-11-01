@@ -23,13 +23,16 @@ public class StockInfoVO {
 
         private String ticker;
 
+        private String sector;
+
         private String name;
 
         private int currentPrice;
 
-        public static final GetStockInfoResponseVOBuilder builder(String ticker, String name, int currentPrice) {
+        public static final GetStockInfoResponseVOBuilder builder(String ticker, String sector, String name, int currentPrice) {
             return innerBuilder()
                     .ticker(ticker)
+                    .sector(sector)
                     .name(name)
                     .currentPrice(currentPrice);
         }
@@ -37,6 +40,7 @@ public class StockInfoVO {
         public static final GetStockInfoResponseVO from(GetStockInfoResponseDTO dto) {
             return GetStockInfoResponseVO.builder(
                     dto.getTicker(),
+                    dto.getSector(),
                     dto.getName(),
                     dto.getCurrentPrice()
             ).build();

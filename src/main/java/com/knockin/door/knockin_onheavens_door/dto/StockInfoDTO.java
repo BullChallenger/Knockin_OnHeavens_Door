@@ -35,13 +35,16 @@ public class StockInfoDTO {
 
         private final String ticker;
 
+        private final String sector;
+
         private final String name;
 
         private final int currentPrice;
 
-        public static final GetStockInfoResponseDTOBuilder builder(String ticker, String name, int currentPrice) {
+        public static final GetStockInfoResponseDTOBuilder builder(String ticker, String sector, String name, int currentPrice) {
             return innerBuilder()
                     .ticker(ticker)
+                    .sector(sector)
                     .name(name)
                     .currentPrice(currentPrice);
         }

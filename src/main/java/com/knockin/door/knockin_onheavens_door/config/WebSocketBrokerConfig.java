@@ -30,4 +30,5 @@ public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/gs-guide-websocket")
                 .withSockJS();
     }
+
 }

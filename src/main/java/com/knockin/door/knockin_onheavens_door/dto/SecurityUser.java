@@ -1,6 +1,5 @@
 package com.knockin.door.knockin_onheavens_door.dto;
 
-import com.knockin.door.knockin_onheavens_door.domain.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.userdetails.UserDetails;

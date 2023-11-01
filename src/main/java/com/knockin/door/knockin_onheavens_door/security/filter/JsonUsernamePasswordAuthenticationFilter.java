@@ -76,4 +76,5 @@ public class JsonUsernamePasswordAuthenticationFilter extends AbstractAuthentica
         private String email;
         private String password;
     }
+
 }

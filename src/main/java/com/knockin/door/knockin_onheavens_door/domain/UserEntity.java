@@ -7,11 +7,14 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
+@Entity(name = "user")
 @Getter
 @DynamicInsert
 @DynamicUpdate
+@Table(name = "user")
 @Where(clause = "is_deleted = false")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,6 +35,9 @@ public final class UserEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @OneToMany(mappedBy = "stock")
+    private List<PortFolioEntity> portFolioList = new ArrayList<>();
 
     @Builder
     public UserEntity(String email, String nickName, String password, String name, UserRole role) {
@@ -74,5 +80,9 @@ public final class UserEntity extends BaseEntity {
 
     public void updateRole(UserRole role) {
         this.role = role;
+    }
+
+    public void addPortFolio(PortFolioEntity portFolio) {
+        this.portFolioList.add(portFolio);
     }
 }
